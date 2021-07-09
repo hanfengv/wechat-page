@@ -1,26 +1,47 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import { commands, window } from "vscode";
+const vscode = require("vscode");
+
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  let disposable = commands.registerCommand(
+  const getCurFilePath = async () => {
+    return vscode.window.activeTextEditor.document.fileName;
+  };
+  const showPages = async () => {
+    // let editor = vscode.window.activeTextEditor;
+    // const curFileFsPath = editor.document.uri.fsPath;
+    const curFilePath = getCurFilePath();
+    const clipboardText = await vscode.env.clipboard.readText();
+    console.log("🚀 :: env:: ", { clipboardText, curFilePath });
+    const result = await vscode.window.showQuickPick(
+      ["a.wxss", "zwei", "drei"],
+      {
+        placeHolder: "请选择要打开的文件",
+      }
+    );
+    vscode.window.showInformationMessage(`Got: ${result}`);
+  };
+
+  let helloWorldCommand = vscode.commands.registerCommand(
     "wechat-page.helloWorld",
     function () {
-      window.showInformationMessage("Hello World from wechat-page!");
+      vscode.window.showInformationMessage("Hello World from wechat-page!");
     }
   );
 
-  let wePage = commands.registerCommand("wechat-page.wePage", function () {
-    window.showInformationMessage("Hello World from wePage!");
-  });
-  context.subscriptions.push(disposable, wePage);
+  let wePageCommand = vscode.commands.registerCommand(
+    "wechat-page.wePage",
+    function () {
+      showPages();
+    }
+  );
+
+  context.subscriptions.push(helloWorldCommand, wePageCommand);
 }
 
 function deactivate() {}
 
-export default {
+module.exports = {
   activate,
   deactivate,
 };
