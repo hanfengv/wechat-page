@@ -12,6 +12,7 @@
     "Other"
   ],
   "activationEvents": [
+    "onCommand:wechat-page.createTpl",
     "onCommand:wechat-page.wePage",
     "onCommand:wechat-page.helloWorld"
   ],
@@ -19,14 +20,28 @@
   "contributes": {
     "commands": [
       {
+        "command": "wechat-page.createTpl",
+        "title": "wechat-page[createTpl]: 创建模板到此处"
+      },
+      {
         "command": "wechat-page.wePage",
         "title": "wechat-page[wePage]: 显示与当前文件关联的 page"
       },
       {
         "command": "wechat-page.helloWorld",
-        "title": "Hello World"
+        "title": "wechat-page[HelloWorld]"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "wechat-page.createTpl",
+          "group": "navigation",
+          "label": "创建模板"
+        }
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint .",
