@@ -46,10 +46,16 @@ class File {
 
   // 递归创建
   async readDirectory({ to, from, fname }) {
+    console.log(666, {
+      to,
+      from,
+      fname,
+    });
     const fileinfos = await fs.readDirectory(from);
     fileinfos.map(async (item) => {
       const tempName = item[0];
-      const toName = `${fname}.${tempName.split(".")[1]}`;
+      const toName = fname ? `${fname}.${tempName.split(".")[1]}` : tempName;
+      console.log(777, { tempName, toName });
       if (item[1] === vscode.FileType.File) {
         this.createTemplateFile({
           from: this.fromatPath(from.path + "/" + tempName),

@@ -1,10 +1,10 @@
 {
   "name": "wechat-page",
   "displayName": "wechat-page",
-  "description": "微信小程序 page 关联文件",
+  "description": "微信小程序 page 页面 组件 模板",
   "publisher": "hanfengv",
   "repository": "https://github.com/hanfengv/wechat-page",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.58.0"
   },
@@ -21,11 +21,11 @@
     "commands": [
       {
         "command": "wechat-page.createTpl",
-        "title": "wechat-page[createTpl]: 创建模板到此处"
+        "title": "CopyTplHere"
       },
       {
         "command": "wechat-page.wePage",
-        "title": "wechat-page[wePage]: 显示与当前文件关联的 page"
+        "title": "wechat-page[wePage]: 显示当前文件的同级文件"
       },
       {
         "command": "wechat-page.helloWorld",
@@ -37,10 +37,25 @@
         {
           "when": "explorerResourceIsFolder",
           "command": "wechat-page.createTpl",
-          "group": "navigation",
+          "group": "5_cutcopypaste",
           "label": "创建模板"
         }
       ]
+    },
+    "configuration": {
+      "title": "wePage:复制模板时,文件是否和目录同名",
+      "properties": {
+        "wechat-page.tplSwitch": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否开启复制模板功能"
+        },
+        "wechat-page.tplSameName": {
+          "type": "boolean",
+          "default": false,
+          "description": "复制模板时,文件是否和目录同名"
+        }
+      }
     }
   },
   "scripts": {
