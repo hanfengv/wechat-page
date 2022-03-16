@@ -11,3 +11,9 @@
 "command": "wechat-page.wePage",
 "title": "wechat-page[wePage]: 显示与当前文件关联的 page"
 ```
+
+## update log
+
+1. v0.03 fixed 模板中有文件夹的情况;
+2. v0.02 feature 右击菜单,模板中;
+3. v0.01 faature 显示当前文件的同级文件;
