@@ -54,7 +54,10 @@ class File {
     const fileinfos = await fs.readDirectory(from);
     fileinfos.map(async (item) => {
       const tempName = item[0];
-      const toName = fname ? `${fname}.${tempName.split(".")[1]}` : tempName;
+      const keepPath = tempName.startsWith("__");
+      let toName =
+        fname && !keepPath ? `${fname}.${tempName.split(".")[1]}` : tempName;
+      toName = keepPath ? tempName.replace("__", "") : toName;
       console.log(777, { tempName, toName });
       if (item[1] === vscode.FileType.File) {
         this.createTemplateFile({
