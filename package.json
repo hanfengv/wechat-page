@@ -4,7 +4,7 @@
   "description": "微信小程序 page 页面 组件 模板",
   "publisher": "hanfengv",
   "repository": "https://github.com/hanfengv/wechat-page",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.58.0"
   },
